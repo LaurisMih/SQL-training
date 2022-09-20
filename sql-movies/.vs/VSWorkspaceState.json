@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\data",
+    "\\src\\queries",
+    "\\test"
+  ],
+  "SelectedNode": "\\test\\06-simple-queries.test.ts",
+  "PreviewInSolutionExplorer": false
+}
