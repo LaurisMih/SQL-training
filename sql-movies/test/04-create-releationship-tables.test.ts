@@ -10,15 +10,45 @@ import { Database } from "../src/database";
 import { tableInfo } from "../src/queries/table-info";
 import { minutes, Log } from "./utils";
 
-const CREATE_MOVIE_GENRES_TABLE = ``;
+const CREATE_MOVIE_GENRES_TABLE = `Create table ${MOVIE_GENRES}
+(movie_id INTEGER NOT NULL,
+genre_id INTEGER NOT NULL,
+Primary key(movie_id, genre_id)
+Foreign key (movie_id) references movies(id)
+Foreign key (genre_id) references genres(id)
+)`;
 
-const CREATE_MOVIE_ACTORS_TABLE = ``;
+const CREATE_MOVIE_ACTORS_TABLE = `Create table ${MOVIE_ACTORS}
+(movie_id INTEGER NOT NULL,
+actor_id INTEGER NOT NULL,
+Primary key(movie_id, actor_id)
+Foreign key (movie_id) references movies(id)
+Foreign key (actor_id) references actors(id)
+)`;
 
-const CREATE_MOVIE_DIRECTORS_TABLE = ``;
+const CREATE_MOVIE_DIRECTORS_TABLE = `Create table ${MOVIE_DIRECTORS}
+(movie_id INTEGER NOT NULL,
+director_id INTEGER NOT NULL,
+Primary key(movie_id, director_id)
+Foreign key (movie_id) references movies(id)
+Foreign key (director_id) references directors(id)
+)`;
 
-const CREATE_MOVIE_KEYWORDS_TABLE = ``;
+const CREATE_MOVIE_KEYWORDS_TABLE = `Create table ${MOVIE_KEYWORDS}
+(movie_id INTEGER NOT NULL,
+keyword_id INTEGER NOT NULL,
+Primary key(movie_id, keyword_id)
+Foreign key (movie_id) references movies(id)
+Foreign key (keyword_id) references keywords(id)
+)`;
 
-const CREATE_MOVIE_PRODUCTION_COMPANIES_TABLE = ``;
+const CREATE_MOVIE_PRODUCTION_COMPANIES_TABLE = `Create table ${MOVIE_PRODUCTION_COMPANIES}
+(movie_id INTEGER NOT NULL,
+company_id INTEGER NOT NULL,
+Primary key(movie_id, company_id)
+Foreign key (movie_id) references movies(id)
+Foreign key (company_id) references production_companies(id)
+)`;
 
 describe("Insert Combined Data", () => {
   let db: Database;
@@ -63,34 +93,34 @@ describe("Insert Combined Data", () => {
 
     const genres = (await selectTableInfo(MOVIE_GENRES)).map(mapFn);
     expect(genres).toEqual([
-      { name: "movie_id", type: "integer" },
-      { name: "genre_id", type: "integer" }
+      { name: "movie_id", type: "INTEGER" },
+        { name: "genre_id", type: "INTEGER" }
     ]);
 
     const actors = (await selectTableInfo(MOVIE_ACTORS)).map(mapFn);
     expect(actors).toEqual([
-      { name: "movie_id", type: "integer" },
-      { name: "actor_id", type: "integer" }
+        { name: "movie_id", type: "INTEGER" },
+        { name: "actor_id", type: "INTEGER" }
     ]);
 
     const directors = (await selectTableInfo(MOVIE_DIRECTORS)).map(mapFn);
     expect(directors).toEqual([
-      { name: "movie_id", type: "integer" },
-      { name: "director_id", type: "integer" }
+        { name: "movie_id", type: "INTEGER" },
+        { name: "director_id", type: "INTEGER" }
     ]);
 
     const keywords = (await selectTableInfo(MOVIE_KEYWORDS)).map(mapFn);
     expect(keywords).toEqual([
-      { name: "movie_id", type: "integer" },
-      { name: "keyword_id", type: "integer" }
+        { name: "movie_id", type: "INTEGER" },
+        { name: "keyword_id", type: "INTEGER" }
     ]);
 
     const productionCompanies = (await selectTableInfo(
       MOVIE_PRODUCTION_COMPANIES
     )).map(mapFn);
     expect(productionCompanies).toEqual([
-      { name: "movie_id", type: "integer" },
-      { name: "company_id", type: "integer" }
+        { name: "movie_id", type: "INTEGER" },
+        { name: "company_id", type: "INTEGER" }
     ]);
 
     done();
